@@ -1,4 +1,4 @@
-name:  Lint and Test
+name: Lint and Test
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
@@ -17,7 +17,6 @@ jobs:
         with:
           node-version: "24"
           cache: npm
-          
 
       - name: Build
         run: npm ci
