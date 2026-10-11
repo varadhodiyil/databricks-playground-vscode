@@ -1,0 +1,77 @@
+{
+  "name": "databricks-playground",
+  "displayName": "Databricks AI Playground",
+  "version": "0.1.0",
+  "description": "A VS Code chat playground for Databricks Model Serving endpoints.",
+  "categories": [
+    "Other"
+  ],
+  "publisher": "varadhodiyil",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile",
+    "package": "npm run compile && vsce package",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.26.0",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "typescript": "^5.3.3"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "databricksPlayground.open",
+        "title": "Databricks Playground: Open"
+      },
+      {
+        "command": "databricksPlayground.configure",
+        "title": "Databricks Playground: Configure Workspace"
+      },
+      {
+        "command": "databricksPlayground.setToken",
+        "title": "Databricks Playground: Set Personal Access Token"
+      }
+    ],
+    "configuration": {
+      "title": "Databricks Playground",
+      "properties": {
+        "databricksPlayground.workspaceUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Databricks workspace URL, e.g. https://your-workspace.cloud.databricks.com"
+        },
+        "databricksPlayground.endpointName": {
+          "type": "string",
+          "default": "",
+          "description": "Databricks Model Serving endpoint name."
+        },
+        "databricksPlayground.maxTokens": {
+          "type": "number",
+          "default": 1024,
+          "minimum": 1,
+          "maximum": 32768,
+          "description": "Maximum output tokens requested from the model."
+        },
+        "databricksPlayground.temperature": {
+          "type": "number",
+          "default": 0.2,
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Sampling temperature."
+        }
+      }
+    }
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  }
+}
